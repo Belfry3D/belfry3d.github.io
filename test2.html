@@ -1,82 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Belfry3D - Test 2</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="styles.css">
-		<meta name="author" content="Shaun Schwegler">
-		<style>
-			.html-box {
-			  position: absolute;
-			  background-color: #4100f39d;
-			  padding: 10px;
-			  z-index: 9999;
-			  overflow: auto;
-			}
-		
-			.html-box-content {
-			  max-height: 100%;
-			  overflow: auto;
-			}
-		
-			body {
-			  cursor: crosshair;
-			  margin: 0;
-			  overflow: hidden;
-			}
-		
-			#canvas-container {
-			  position: absolute;
-			  width: 100%;
-			  height: 100%;
-			}
-		
-			.left-box {
-			  left: 30px;
-			  top: 120px;
-			  width: 300px;
-			  height: 700px;
-			}
-		
-			.top-box {
-			  right: 30px;
-			  left: 30px;
-			  top: 30px;
-			  height: 50px;
-			}
-		
-			.box-title {
-			  font-weight: bold;
-			  margin-bottom: 10px;
-			}
-		  </style>
-		</head>
-		
-		<body>
-		  <div id="canvas-container"></div>
-		
-		  <div class="html-box left-box">
-			<div class="html-box-content">
-			  <p class="box-title">HTML Box 1</p>
-			  <p>This is the HTML box positioned 30px away from the left edge. The text inside this box will wrap and become scrollable when it exceeds the available space.</p>
-			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel lectus erat. Duis rhoncus consectetur arcu nec tincidunt. Nam ut ligula lorem. Curabitur in erat eu lorem tempus cursus. Etiam a magna at mauris commodo gravida sed non lacus. Nam pharetra lectus a risus lobortis bibendum. Nulla efficitur vestibulum facilisis. Ut at laoreet ex. Aliquam fermentum maximus dui, id auctor sem porttitor a. Sed convallis placerat congue. Donec at est in libero euismod pharetra.</p>
-			</div>
-		  </div>
-		
-		  <div class="html-box top-box">
-			<div class="html-box-content">
-			 <p>Home   |   About   |   Orders</p>
-			</div>
-		  </div>
 
-		<!-- BELFRY 3D IS GONNA BE SICK -->
+<head>
+	<title>Belfry3D - Test 2</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="styles.css">
+	<meta name="author" content="Shaun Schwegler">
+	<style>
+		body {
+			cursor: crosshair;
+		}
+	</style>
+</head>
 
-		<!-- Import maps polyfill -->
-		<!-- Remove this when import maps will be widely supported -->
-		<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+<body>
+	<div id="info">
+		<img src="belfry3dlogo.png" alt="Belfry3D Logo" style="width: 27%; height: auto;">
+		</a>
+	</div>
 
-		<script type="importmap">
+	<!-- BELFRY 3D IS GONNA BE SICK -->
+
+	<!-- Import maps polyfill -->
+	<!-- Remove this when import maps will be widely supported -->
+	<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+	<script type="importmap">
 			{
 				"imports": {
 					"three": "../build/three.module.js",
@@ -85,128 +35,129 @@
 			}
 		</script>
 
-		<script type="module">
+	<script type="module">
 
-			import * as THREE from 'three';
+		import * as THREE from 'three';
 
-			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+		import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+		import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
-			let camera, scene, renderer, stats;
+		let camera, scene, renderer, stats;
 
-			const clock = new THREE.Clock();
+		const clock = new THREE.Clock();
 
-			let mixer;
+		let mixer;
 
-			init();
-			animate();
+		init();
+		animate();
 
-			function init() {
+		function init() {
 
-				const container = document.createElement( 'div' );
-				document.body.appendChild( container );
+			const container = document.createElement('div');
+			document.body.appendChild(container);
 
-				// camera
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.set( 100, 200, 300 );
+			// camera
+			camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 2000);
+			camera.position.set(100, 200, 300);
 
-				// scene
-				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xa0a0a0 );
-				scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
+			// scene
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color(0xa0a0a0);
+			scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
-				// lighting
-				const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 5 );
-				hemiLight.position.set( 0, 200, 0 );
-				scene.add( hemiLight );
+			// lighting
+			const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 5);
+			hemiLight.position.set(0, 200, 0);
+			scene.add(hemiLight);
 
-				const dirLight = new THREE.DirectionalLight( 0xffffff, 5 );
-				dirLight.position.set( 0, 200, 100 );
-				dirLight.castShadow = true;
-				dirLight.shadow.camera.top = 180;
-				dirLight.shadow.camera.bottom = - 100;
-				dirLight.shadow.camera.left = - 120;
-				dirLight.shadow.camera.right = 120;
-				scene.add( dirLight );
+			const dirLight = new THREE.DirectionalLight(0xffffff, 5);
+			dirLight.position.set(0, 200, 100);
+			dirLight.castShadow = true;
+			dirLight.shadow.camera.top = 180;
+			dirLight.shadow.camera.bottom = - 100;
+			dirLight.shadow.camera.left = - 120;
+			dirLight.shadow.camera.right = 120;
+			scene.add(dirLight);
 
-				// scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
+			// scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
 
-				// ground
-				const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x800080, depthWrite: false } ) );
-				mesh.rotation.x = - Math.PI / 2;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
+			// ground
+			const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x800080, depthWrite: false }));
+			mesh.rotation.x = - Math.PI / 2;
+			mesh.receiveShadow = true;
+			scene.add(mesh);
 
-				const grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
-				grid.material.opacity = 0.2;
-				grid.material.transparent = true;
-				scene.add( grid );
+			const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000);
+			grid.material.opacity = 0.2;
+			grid.material.transparent = true;
+			scene.add(grid);
 
-				// model
-				const loader = new FBXLoader();
-				loader.load( 'models/fbx/Happy Idle.fbx', function ( object ) {
+			// model
+			const loader = new FBXLoader();
+			loader.load('models/fbx/Happy Idle.fbx', function (object) {
 
-					mixer = new THREE.AnimationMixer( object );
+				mixer = new THREE.AnimationMixer(object);
 
-					const action = mixer.clipAction( object.animations[ 0 ] );
-					action.play();
+				const action = mixer.clipAction(object.animations[0]);
+				action.play();
 
-					object.traverse( function ( child ) {
+				object.traverse(function (child) {
 
-						if ( child.isMesh ) {
+					if (child.isMesh) {
 
-							child.castShadow = true;
-							child.receiveShadow = true;
+						child.castShadow = true;
+						child.receiveShadow = true;
 
-						}
+					}
 
-					} );
+				});
 
-					scene.add( object );
+				scene.add(object);
 
-				} );
+			});
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.useLegacyLights = false;
-				renderer.shadowMap.enabled = true;
-				container.appendChild( renderer.domElement );
+			renderer = new THREE.WebGLRenderer({ antialias: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.useLegacyLights = false;
+			renderer.shadowMap.enabled = true;
+			container.appendChild(renderer.domElement);
 
-				const controls = new OrbitControls( camera, renderer.domElement );
-				controls.target.set( 0, 100, 0 );
-				controls.update();
+			const controls = new OrbitControls(camera, renderer.domElement);
+			controls.target.set(0, 100, 0);
+			controls.update();
 
-				window.addEventListener( 'resize', onWindowResize );
+			window.addEventListener('resize', onWindowResize);
 
-			}
+		}
 
-			function onWindowResize() {
+		function onWindowResize() {
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize(window.innerWidth, window.innerHeight);
 
-			}
+		}
 
-			//
+		//
 
-			function animate() {
+		function animate() {
 
-				requestAnimationFrame( animate );
+			requestAnimationFrame(animate);
 
-				const delta = clock.getDelta();
+			const delta = clock.getDelta();
 
-				if ( mixer ) mixer.update( delta );
+			if (mixer) mixer.update(delta);
 
-				renderer.render( scene, camera );
+			renderer.render(scene, camera);
 
-				stats.update();
+			stats.update();
 
-			}
+		}
 
-		</script>
+	</script>
 
-	</body>
+</body>
+
 </html>
