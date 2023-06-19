@@ -7,29 +7,68 @@
 		<link type="text/css" rel="stylesheet" href="styles.css">
 		<meta name="author" content="Shaun Schwegler">
 		<style>
-
-
-			body {
-				cursor: crosshair;
+			.html-box {
+			  position: absolute;
+			  background-color: #4100f39d;
+			  padding: 10px;
+			  z-index: 9999;
+			  overflow: auto;
 			}
-		</style>
-	</head>
-
-	<body>
-		<div id="html-box">
-			<div id="html-box-content">
-				<h2>CATALOGUE</h2>
-				<p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-				<p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-				<p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-				<p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-                <p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-                <p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
-                <p>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br>Item 1 <br> Item 2 <br> Item 3 <br> Item 4 <br></p>
+		
+			.html-box-content {
+			  max-height: 100%;
+			  overflow: auto;
+			}
+		
+			body {
+			  cursor: crosshair;
+			  margin: 0;
+			  overflow: hidden;
+			}
+		
+			#canvas-container {
+			  position: absolute;
+			  width: 100%;
+			  height: 100%;
+			}
+		
+			.left-box {
+			  left: 30px;
+			  top: 120px;
+			  width: 300px;
+			  height: 700px;
+			}
+		
+			.top-box {
+			  right: 30px;
+			  left: 30px;
+			  top: 30px;
+			  height: 50px;
+			}
+		
+			.box-title {
+			  font-weight: bold;
+			  margin-bottom: 10px;
+			}
+		  </style>
+		</head>
+		
+		<body>
+		  <div id="canvas-container"></div>
+		
+		  <div class="html-box left-box">
+			<div class="html-box-content">
+			  <p class="box-title">HTML Box 1</p>
+			  <p>This is the HTML box positioned 30px away from the left edge. The text inside this box will wrap and become scrollable when it exceeds the available space.</p>
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel lectus erat. Duis rhoncus consectetur arcu nec tincidunt. Nam ut ligula lorem. Curabitur in erat eu lorem tempus cursus. Etiam a magna at mauris commodo gravida sed non lacus. Nam pharetra lectus a risus lobortis bibendum. Nulla efficitur vestibulum facilisis. Ut at laoreet ex. Aliquam fermentum maximus dui, id auctor sem porttitor a. Sed convallis placerat congue. Donec at est in libero euismod pharetra.</p>
 			</div>
-		</div>
-
-		<div id="canvas-container"></div>
+		  </div>
+		
+		  <div class="html-box top-box">
+			<div class="html-box-content">
+			 <p>Home   |   About   |   Orders</p>
+			</div>
+		  </div>
 
 		<!-- BELFRY 3D IS GONNA BE SICK -->
 
