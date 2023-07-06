@@ -8,19 +8,98 @@
 	<link type="text/css" rel="stylesheet" href="styles.css">
 	<meta name="author" content="Shaun Schwegler">
 	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 		body {
-			cursor: crosshair;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		#sidebar {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			right: 20px;
+			/* Adjust the right position */
+			bottom: 150px;
+			/* Adjust the bottom position */
+			width: 200px;
+			background-color: rgba(0, 0, 0, 0.479);
+			padding: 20px;
+			box-sizing: border-box;
+			border-radius: 5px;
+			/* Add border radius */
+		}
+
+		.sidebar-section {
+			margin-bottom: 10px;
+		}
+
+		.sidebar-title {
+			font-family: 'Roboto Thin', sans-serif;
+			font-weight: bold;
+			font-size: 15px;
+			color: white;
+			margin-top: 0;
+			margin-bottom: 20px;
+			/* Add margin-top */
+		}
+
+		.sidebar-image-container {
+			max-height: calc(100% - 40px);
+			/* Adjust the height of the image container */
+			overflow-y: auto;
+		}
+
+		.sidebar-image-container::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		.sidebar-image-container::-webkit-scrollbar-thumb {
+			background-color: rgba(27, 27, 27, 0.671);
+		}
+
+		.sidebar-image {
+			display: block;
+			width: 100%;
+			margin-bottom: 5px;
 		}
 	</style>
 </head>
 
 <body>
-	<div id="info">
-		<img src="belfry3dlogo.png" alt="Belfry3D Logo" style="width: 27%; height: auto;">
-		</a>
-	</div>	
 
-	<!-- BELFRY 3D IS GONNA BE SICK -->
+	<div id="sidebar">
+		<div class="sidebar-section">
+			<h1 class="sidebar-title" style="text-align: left;">Chestplates</h1>
+		</div>
+		<div class="sidebar-section sidebar-image-container">
+			<img class="sidebar-image" src="image1.jpg" alt="Image 1">
+			<img class="sidebar-image" src="image2.jpg" alt="Image 2">
+			<img class="sidebar-image" src="image3.jpg" alt="Image 3">
+			<img class="sidebar-image" src="image4.jpg" alt="Image 4">
+			<img class="sidebar-image" src="image5.jpg" alt="Image 5">
+			<img class="sidebar-image" src="image6.jpg" alt="Image 6">
+		</div>
+	</div>
+
+	<script>
+		var sidebar = document.getElementById('sidebar');
+		var contentSections = document.querySelectorAll('.sidebar-section');
+		var totalContentHeight = 0;
+
+		for (var i = 0; i < contentSections.length; i++) {
+			totalContentHeight += contentSections[i].offsetHeight;
+		}
+
+		var sidebarHeight = window.innerHeight;
+		var remainingHeight = sidebarHeight - totalContentHeight;
+		var maxImageContainerHeight = remainingHeight; // Adjust the spacing
+
+		var imageContainer = document.querySelector('.sidebar-image-container');
+		imageContainer.style.maxHeight = maxImageContainerHeight + '1 px'; // Remove the extra space before 'px'
+	</script>
 
 	<!-- Import maps polyfill -->
 	<!-- Remove this when import maps will be widely supported -->
