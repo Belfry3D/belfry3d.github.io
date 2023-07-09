@@ -5,82 +5,24 @@
 	<title>Character Modifier | Belfry3D</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="styles-merged.css">
+	<meta name="company" content="Belfry3D">
 	<meta name="author" content="Shaun Schwegler">
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
-		body {
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-
-		#sidebar {
-			position: fixed;
-			top: 20px;
-			left: 20px;
-			right: 20px;
-			/* Adjust the right position */
-			bottom: 150px;
-			/* Adjust the bottom position */
-			width: 280px;
-			background-color: rgba(0, 0, 0, 0.479);
-			padding: 20px;
-			box-sizing: border-box;
-			border-radius: 5px;
-			/* Add border radius */
-		}
-
-		.sidebar-section {
-			margin-bottom: 10px;
-		}
-
-		.sidebar-title {
-			font-family: 'Roboto Thin', sans-serif;
-			font-weight: bold;
-			font-size: 15px;
-			color: white;
-			margin-top: 0;
-			margin-bottom: 20px;
-			/* Add margin-top */
-		}
-
-		.sidebar-image-container {
-			max-height: calc(100% - 50px);
-			/* Adjust the height of the image container */
-			overflow-y: auto;
-		}
-
-		.sidebar-image-container::-webkit-scrollbar {
-			width: 8px;
-		}
-
-		.sidebar-image-container::-webkit-scrollbar-thumb {
-			background-color: rgba(27, 27, 27, 0.671);
-		}
-
-		.sidebar-image {
-			display: block;
-			width: 100%;
-			margin-bottom: 10px;
-		}
-	</style>
 </head>
 
 <body>
 
 	<div id="sidebar">
 		<div class="sidebar-section">
-			<h1 class="sidebar-title" style="text-align: left; font-size: 20px;">Chestplates</h1>
+			<h1 class="sidebar-title" style="text-align: left; font-size: 16px;">Chestplates</h1>
 		</div>
 		<div class="sidebar-section sidebar-image-container">
-			<img class="sidebar-image" src="image1.jpg" alt="Image 1">
-			<img class="sidebar-image" src="image2.jpg" alt="Image 2">
-			<img class="sidebar-image" src="image3.jpg" alt="Image 3">
-			<img class="sidebar-image" src="image4.jpg" alt="Image 4">
-			<img class="sidebar-image" src="image5.jpg" alt="Image 5">
-			<img class="sidebar-image" src="image6.jpg" alt="Image 6">
+			<img class="sidebar-image" src="belfry-models/image1.jpg" alt="Image 1">
+			<img class="sidebar-image" src="belfry-models/image2.jpg" alt="Image 2">
+			<img class="sidebar-image" src="belfry-models/image3.jpg" alt="Image 3">
+			<img class="sidebar-image" src="belfry-models/image4.jpg" alt="Image 4">
+			<img class="sidebar-image" src="belfry-models/image5.jpg" alt="Image 5">
+			<img class="sidebar-image" src="belfry-models/image6.jpg" alt="Image 6">
 		</div>
 	</div>
 
@@ -137,12 +79,12 @@
 
 			// camera
 			camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 2000);
-			camera.position.set(100, 200, 300);
+			camera.position.set(200, 200, 300);
 
 			// scene
 			scene = new THREE.Scene();
 			scene.background = new THREE.Color(0xa0a0a0);
-			scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+			scene.fog = new THREE.Fog(353535, 500, 1000);
 
 			// lighting
 			const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 5);
@@ -167,13 +109,13 @@
 			scene.add(mesh);
 
 			const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000);
-			grid.material.opacity = 0.2;
+			grid.material.opacity = 0.1;
 			grid.material.transparent = true;
 			scene.add(grid);
 
 			// model
 			const loader = new FBXLoader();
-			loader.load('models/fbx/Happy Idle.fbx', function (object) {
+			loader.load('models/fbx/Breakdance Footwork.fbx', function (object) {
 
 				mixer = new THREE.AnimationMixer(object);
 
@@ -231,8 +173,6 @@
 			if (mixer) mixer.update(delta);
 
 			renderer.render(scene, camera);
-
-			stats.update();
 
 		}
 
