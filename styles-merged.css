@@ -206,13 +206,13 @@ select {
 .scrollbar-wrapper {
     overflow: hidden;
     width: 100%;
-    position: relative; /* Add this to make sure the pseudo-element positions itself correctly */
+    position: relative; /* makes sure the pseudo-element positions itself correctly */
 }
 
 .sidebar-image-container {
     max-height: calc(100% - 52px);
     overflow-y: scroll;
-    margin-right: -6px; /* Add this to shift the scrollbar to the right */
+    margin-right: -6px; /* shifts the scrollbar to the right */
 }
 
 .sidebar-image-container::-webkit-scrollbar {
